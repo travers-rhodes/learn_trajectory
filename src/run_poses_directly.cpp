@@ -39,7 +39,7 @@ void ExecuteAllPoses(DomusInterface &di)
       ExecutePose(joint_state, di);
       joint_state.clear();
       indx_count = -1;
-      ros::Duration(5).sleep();
+      ros::Duration(1).sleep();
     }
     indx_count++;
     if (myfile.peek() == ',')
