@@ -10,7 +10,7 @@
 #include <mutex>
 #include <iostream>
 #include <fstream>
-#include "feedbot_trajectory_logic/domus_interface.h"
+#include "feedbot_trajectory_logic/custom_domus_interface.h"
 
 void ExecutePose(std::vector<double> &joint_state, DomusInterface &di)
 {
@@ -27,7 +27,7 @@ void ExecuteAllPoses(DomusInterface &di)
   double next_float, time;
   std::vector<double> joint_state;
   int indx_count = 0;
-  while (myfile >> next_float)
+  while (ros::ok() && myfile >> next_float)
   {
     if (indx_count == 0)
       time = next_float;
@@ -52,7 +52,7 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "convert_joint_file_to_poses");
   ros::NodeHandle n;
-  DomusInterface di;
+  CustomDomusInterface di;
   di.InitializeConnection();
   ExecuteAllPoses(di);
 }

@@ -11,7 +11,7 @@ from geometry_msgs.msg import Quaternion
 
 class SpoonFeeder:
   def __init__(self):
-    rospy.logwarn("sleeping for 5 seconds before starting feeding")
+    rospy.logwarn("sleeping for 5 seconds before starting recorded motion")
     rospy.sleep(5)
     # quaternion is defined in order x,y,z,w
     self.defaultQuat = Quaternion(0.5, 0.5, 0.5, 0.5)
