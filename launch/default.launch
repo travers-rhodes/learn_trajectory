@@ -19,9 +19,9 @@
     <param name="step_size_meters" type="double" value="0.03"/>
   </node>
 
-  <!-- the "logic" node that says what thing the robot should do (eg: should do some cool moves) 
+  <!-- the "logic" node that says what thing the robot should do (eg: should do some cool moves) -->
   <node name="execute_trajectory_node" pkg="learn_trajectory" type="execute_trajectory_node.py"> 
-  </node>-->
+  </node>
 
   <!-- set up a service that can read in text files and create goal poses -->
   <node name="play_trajectory_service" pkg="learn_trajectory" type="play_trajectory_server.py"/>
