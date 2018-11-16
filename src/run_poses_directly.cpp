@@ -10,7 +10,7 @@
 #include <mutex>
 #include <iostream>
 #include <fstream>
-#include <learn_trajectory/domus_interface.h>
+#include "feedbot_trajectory_logic/domus_interface.h"
 
 void ExecutePose(std::vector<double> &joint_state, DomusInterface &di)
 {

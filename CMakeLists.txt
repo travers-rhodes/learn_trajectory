@@ -10,6 +10,7 @@ add_compile_options(-std=c++11)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  feedbot_trajectory_logic
   moveit_ros_planning_interface
   roscpp
   rospy
@@ -126,14 +127,14 @@ include_directories(
 )
 
 ## Declare a C++ library
-add_library(${PROJECT_NAME}
-  src/domus_interface.cpp
-)
+#add_library(${PROJECT_NAME}
+#  src/domus_interface.cpp
+#)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
@@ -158,7 +159,7 @@ target_link_libraries(convert_joints_file_to_poses_node
 )
 
 target_link_libraries(run_poses_directly_node
-  learn_trajectory
+  feedbot_trajectory_logic
   Eigen3::Eigen
   ${catkin_LIBRARIES}
 )
