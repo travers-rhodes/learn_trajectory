@@ -6,7 +6,7 @@ import numpy as np
 import play_recorded_trajectory as prt
 
 from std_msgs.msg import Bool
-from feedbot_trajectory_logic.srv import PlayTrajectory, PlayTrajectoryResponse 
+from learn_trajectory.srv import PlayTrajectory, PlayTrajectoryResponse 
 
 def main():
   # initialize the ros node 

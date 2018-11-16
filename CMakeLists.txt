@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(learn_trajectory)
 # build debug flags
-#set (CMAKE_CXX_FLAGS "-g")
+set (CMAKE_CXX_FLAGS "-g")
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   sensor_msgs
+  actionlib
 )
 
 find_package(Eigen3 REQUIRED)
@@ -125,19 +126,20 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/learn_trajectory.cpp
-# )
+add_library(${PROJECT_NAME}
+  src/domus_interface.cpp
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(convert_joints_file_to_poses_node src/convert_joints_file_to_poses.cpp)
+add_executable(run_poses_directly_node src/run_poses_directly.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -153,6 +155,12 @@ add_executable(convert_joints_file_to_poses_node src/convert_joints_file_to_pose
 target_link_libraries(convert_joints_file_to_poses_node
   ${catkin_LIBRARIES}
   Eigen3::Eigen
+)
+
+target_link_libraries(run_poses_directly_node
+  learn_trajectory
+  Eigen3::Eigen
+  ${catkin_LIBRARIES}
 )
 
 #############

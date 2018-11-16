@@ -53,7 +53,7 @@ def publish_poses(poseFile, pose_topic):
                 pos_list[curRow,6])
     h = Header()
     h.stamp = rospy.Time.now()
-    h.frame_id = "world"
+    h.frame_id = "base_link"
     pos = pos_list[curRow,1:4]
 
     #rospy.logwarn(curRot)

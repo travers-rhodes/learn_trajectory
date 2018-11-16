@@ -14,7 +14,7 @@ def main():
   timestr = time.strftime("%Y%m%d-%H%M%S")
   r = rospkg.RosPack()
   path = r.get_path("learn_trajectory")
-  recording_file = path + "/data/joints_data.txt"
+  recording_file = path + "/data/joints_data2.txt"
   with open(recording_file, "w+") as f:
     rospy.Subscriber("/joint_states", JointState, callback, (f))
     rospy.spin();
