@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import rospy
 import time
-import rospkg
 from sensor_msgs.msg import JointState 
 
 # take in a message msg and a file to write to f
@@ -12,9 +11,7 @@ def callback(msg, f):
 def main():
   rospy.init_node('joint_state_listener', anonymous=True)
   timestr = time.strftime("%Y%m%d-%H%M%S")
-  r = rospkg.RosPack()
-  path = r.get_path("learn_trajectory")
-  recording_file = path + "/data/joints_data.txt"
+  recording_file = "joints_recording_" + timestr + ".txt"
   with open(recording_file, "w+") as f:
     rospy.Subscriber("/joint_states", JointState, callback, (f))
     rospy.spin();
