@@ -9,7 +9,9 @@
     </include>
 
     <!-- connect to or simulate a robot -->
-    <include file="$(find niryo_one_bringup)/launch/desktop_rviz_simulation.launch" if="$(arg sim)"/>
+    <include file="$(find niryo_one_bringup)/launch/desktop_rviz_simulation.launch" if="$(arg sim)">
+      <arg name="hardware_version" value="2" /> 
+    </include>
 
     <!-- set up a service to forward goal locations to commands to the robot -->
     <node name="track_pose_service" pkg="feedbot_trajectory_logic" type="track_pose_service" respawn="false" output="screen">
