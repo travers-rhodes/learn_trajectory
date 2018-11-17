@@ -8,6 +8,7 @@ domusromus = None
 
 # take in a message msg and a file to write to f
 def callback(msg, f):
+  global domusromus
   if domusromus:
     # https://stackoverflow.com/questions/44778/how-would-you-make-a-comma-separated-string-from-a-list-of-strings
     f.write(str(float(msg.header.stamp.secs) + float(msg.header.stamp.nsecs)/1000000000) 
@@ -15,6 +16,7 @@ def callback(msg, f):
          + ',' + ','.join(map(str, domusromus)) + "\n")
 
 def callbacktwo(msg, f):
+  global domusromus
   domusromus = msg.position
 
 def main():
