@@ -21,6 +21,7 @@ class SpoonFeeder:
 
   def follow_trajectory(self):
     self.tracker.start_updating_target_to_pose(self.play_trajectory_topic)
+    rospy.logwarn("Playing trajectory at " + self.play_trajectory_topic)
     self._play_trajectory(String(self.play_trajectory_topic))
 
 if __name__=="__main__":

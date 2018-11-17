@@ -28,6 +28,7 @@ def get_quat(ox, oy, oz):
   return quat
 
 def publish_poses(poseFile, pose_topic):
+  rospy.logwarn("I'm publishing poses and my namespace is " + rospy.get_namespace())
   pos_list = load_position_list(poseFile)
   starttime = rospy.Time.now().to_sec() # skip the first chunk of time
   slowdown_factor = 10 
@@ -36,7 +37,7 @@ def publish_poses(poseFile, pose_topic):
   lasttime = lasttime  * 2.8/4.0
   curTime = rospy.Time.now().to_sec() - starttime
   target_pub = rospy.Publisher(pose_topic, Pose, queue_size=10)
-  pos_pub = rospy.Publisher("/target_pose", PoseStamped, queue_size=10)
+  pos_pub = rospy.Publisher("target_pose", PoseStamped, queue_size=10)
   r = rospy.Rate(10) # publish at max 10hz
   curRow = 0
   while curRow < range(pos_list.shape[0]) and not rospy.is_shutdown():
@@ -72,7 +73,7 @@ def publish_poses(poseFile, pose_topic):
     curTime = rospy.Time.now().to_sec() - starttime
     curRow = curRow + 1
   rospy.logwarn("Done playing trajectory. Now we publish the fact that we're done to food_acquired")
-  food_acquired_pub = rospy.Publisher("/food_acquired", Bool, queue_size=10)
+  food_acquired_pub = rospy.Publisher("food_acquired", Bool, queue_size=10)
   # https://github.com/ros/ros_comm/issues/176
   rospy.sleep(1)
   food_acquired_pub.publish(Bool(True))
@@ -81,4 +82,4 @@ if __name__=="__main__":
   rospy.init_node("simulate_spoon")
   while not rospy.is_shutdown():
     poseFile = "spoon_poses.txt"
-    publish_poses(poseFile, "/trajectory_playback_poses")
+    publish_poses(poseFile, "trajectory_playback_poses")
