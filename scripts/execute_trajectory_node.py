@@ -16,7 +16,7 @@ class SpoonFeeder:
     # quaternion is defined in order x,y,z,w
     self.defaultQuat = Quaternion(0.5, 0.5, 0.5, 0.5)
     self.tracker = tracker.TrackerInterface(self.defaultQuat)
-    self.play_trajectory_topic = "/trained_poses"
+    self.play_trajectory_topic = "trained_poses"
     self._play_trajectory = rospy.ServiceProxy("play_trajectory", PlayTrajectory)
 
   def follow_trajectory(self):
