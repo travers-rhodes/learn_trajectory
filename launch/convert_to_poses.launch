@@ -1,0 +1,9 @@
+<launch>
+  <!-- this group lets you communicate with a certified original niryo robot -->
+  <group>
+    <!-- connect to or simulate a robot -->
+    <include file="$(find niryo_one_bringup)/launch/desktop_rviz_simulation.launch">
+      <arg name="hardware_version" value="2" /> 
+    </include>
+  </group>
+</launch>
