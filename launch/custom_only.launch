@@ -36,4 +36,6 @@
     <!-- publish the robot state (with the fancy renamed links!) as a tf -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
   </group>
+
+   <node name="record_new_joints" pkg="learn_trajectory" type="record_joint_state.py"/>
 </launch>
