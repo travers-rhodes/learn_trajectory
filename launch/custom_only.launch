@@ -37,5 +37,5 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
   </group>
 
-   <node name="record_new_joints" pkg="learn_trajectory" type="record_joint_state.py"/>
+   <node name="record_new_joints" pkg="learn_trajectory" type="record_both_robot_joint_states.py"/>
 </launch>
