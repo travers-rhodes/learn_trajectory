@@ -1,13 +1,12 @@
 <launch>
   <arg name="sim"/>
-  <arg name="link_prefix" default="authentic_niryo_"/>
+  <arg name="link_prefix" default=""/>
 
   <!-- load the description file of the robot so that we can use moveit -->
   <!-- this group lets you communicate with a certified original niryo robot -->
-  <group ns="authentic_niryo">
+  <group>
     <!-- connect to or simulate a robot -->
     <include file="$(find niryo_one_bringup)/launch/desktop_rviz_simulation.launch" if="$(arg sim)">
-      <arg name="link_prefix" value="$(arg link_prefix)"/>
       <arg name="hardware_version" value="2" /> 
     </include>
 
