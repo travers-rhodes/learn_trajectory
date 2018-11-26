@@ -52,7 +52,7 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "convert_joint_file_to_poses");
   ros::NodeHandle n;
-  CustomDomusInterface di;
+  CustomDomusInterface di(&n);
   di.InitializeConnection();
   ExecuteAllPoses(di);
 }

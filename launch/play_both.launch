@@ -51,6 +51,8 @@
       <arg name="load_robot_description" value="true"/>
     </include>
 
+    <node pkg="tf2_ros" type="static_transform_publisher" name="bases_static_publisher" args="0.45 0.06 0.0 0.0 0.0 1.0 0.0 $(arg link_prefix)base_link base_link" />
+
     <!-- set up a service to forward goal locations to commands to the robot -->
     <node name="track_pose_service" pkg="feedbot_trajectory_logic" type="track_pose_service" respawn="false" output="screen">
       <!--launch-prefix="/home/travers/run_tmux.sh">-->
@@ -58,10 +60,13 @@
                 file="$(find niryo_one_moveit_config)/config/kinematics.yaml"/>
       <param name="update_rate_hz" type="double" value="10"/>
       <param name="step_size_meters" type="double" value="0.03"/>
-      <param name="robot_type" type="string" value="custom_domus"/> <!--"custom_domus", "niryo", or "sim" !-->
+      <param name="robot_type" type="string" value="custom_domus" unless="$(arg sim)"/> <!--"custom_domus", "niryo", or "sim" !-->
+      <param name="robot_type" type="string" value="sim" if="$(arg sim)"/> <!--"custom_domus", "niryo", or "sim" !-->
       <param name="link_prefix" value="$(arg link_prefix)"/>
     </node>
-
+  
+    <!-- publish the robot state (with the fancy renamed links!) as a tf -->
+    <node name="second_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
 
   </group>
 
