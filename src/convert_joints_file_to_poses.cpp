@@ -76,6 +76,6 @@ void ConvertJointFileToPoses::WritePoseFile()
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "convert_joint_file_to_poses");
-  ConvertJointFileToPoses converter("joints_data.txt");
+  ConvertJointFileToPoses converter("joints_data_right.txt");
   converter.WritePoseFile();
 }
