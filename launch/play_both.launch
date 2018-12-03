@@ -51,7 +51,7 @@
       <arg name="load_robot_description" value="true"/>
     </include>
 
-    <node pkg="tf2_ros" type="static_transform_publisher" name="bases_static_publisher" args="0.45 0.06 0.0 0.0 0.0 1.0 0.0 $(arg link_prefix)base_link base_link" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="bases_static_publisher" args="0.45 0.06 0.0 0.0 0.0 1.0 0.0 base_link $(arg link_prefix)base_link" />
 
     <!-- set up a service to forward goal locations to commands to the robot -->
     <node name="track_pose_service" pkg="feedbot_trajectory_logic" type="track_pose_service" respawn="false" output="screen">
