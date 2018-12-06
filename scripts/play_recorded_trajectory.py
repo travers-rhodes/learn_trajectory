@@ -40,7 +40,7 @@ def publish_poses(poseFile, pose_topic):
   pos_pub = rospy.Publisher("target_pose", PoseStamped, queue_size=10)
   r = rospy.Rate(10) # publish at max 10hz
   curRow = 0
-  while curRow < range(pos_list.shape[0]) and not rospy.is_shutdown():
+  while curRow < pos_list.shape[0] and not rospy.is_shutdown():
     #print(curTime, lasttime)
     #curRow = np.argmax((pos_list[:,0]  * slowdown_factor) > curTime) - 1
     #curRow = np.argmax((range(pos_list.shape[0])  * slowdown_factor) > curTime) - 1
@@ -73,7 +73,7 @@ def publish_poses(poseFile, pose_topic):
     curTime = rospy.Time.now().to_sec() - starttime
     curRow = curRow + 1
   rospy.logwarn("Done playing trajectory. Now we publish the fact that we're done to food_acquired")
-  food_acquired_pub = rospy.Publisher("food_acquired", Bool, queue_size=10)
+  food_acquired_pub = rospy.Publisher("/food_acquired", Bool, queue_size=10)
   # https://github.com/ros/ros_comm/issues/176
   rospy.sleep(1)
   food_acquired_pub.publish(Bool(True))
