@@ -19,6 +19,7 @@ class PlayTrajectoryService:
   def __init__(self):
     self.should_play = False
     self.pose_topic = None
+    self.recording_file_name = None
 
   def play_when_called(self):
     # keep this loop from going faster than a fixed amount by means of rospy.rate
@@ -30,7 +31,9 @@ class PlayTrajectoryService:
         if self.should_play:
           if self.pose_topic is None:
             rospy.logerr("pose_topic should be set before should_play is set")
-          prt.publish_poses("spoon_poses_both.txt", self.pose_topic)
+          if self.recording_file_name is None:
+            rospy.logerr("recording_file_name should be set before should_play is set")
+          prt.publish_poses(self.recording_file_name, self.pose_topic)
           self.should_play = False
       except Exception as e:
         rospy.logerr(e)
@@ -48,6 +51,7 @@ class PlayTrajectoryService:
       rospy.logerr("Player was currently playing when another request to play was called. The new request to play will be ignored")
       return PlayTrajectoryResponse(Bool(False))
     self.pose_topic = req.pose_topic.data
+    self.recording_file_name = req.recording_file_name.data
     self.should_play = True
     return PlayTrajectoryResponse(Bool(True))
 
