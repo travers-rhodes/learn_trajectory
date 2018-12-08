@@ -21,8 +21,8 @@ class SpoonFeeder:
     self._play_trajectory = rospy.ServiceProxy("play_trajectory", PlayTrajectory)
 
   def follow_trajectory(self, recording_file_name):
-    self.tracker.start_updating_target_to_pose(self.play_trajectory_topic)
-    self.trackertoo.start_updating_target_to_pose("/domusromus/"+self.play_trajectory_topic)
+    self.tracker.start_updating_target_to_pose(self.play_trajectory_topic, [0,0,0])
+    self.trackertoo.start_updating_target_to_pose("/domusromus/"+self.play_trajectory_topic,[0,0,0])
     rospy.logwarn("Playing trajectory at " + self.play_trajectory_topic)
     self._play_trajectory(String(self.play_trajectory_topic), String(recording_file_name))
 

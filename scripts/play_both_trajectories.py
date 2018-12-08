@@ -28,6 +28,7 @@ def get_quat(ox, oy, oz):
   return quat
 
 def publish_poses(poseFile, pose_topic):
+  swapped = False 
   rospy.logwarn("I'm publishing poses and my namespace is " + rospy.get_namespace())
   pos_list = load_position_list(poseFile)
   starttime = rospy.Time.now().to_sec() # skip the first chunk of time
@@ -69,8 +70,13 @@ def publish_poses(poseFile, pose_topic):
                 Quaternion(curQuat[1],curQuat[2],curQuat[3],curQuat[0]))
 
     poseStamped = PoseStamped(h,pose)
-    target_pub.publish(pose)
-    pos_pub.publish(poseStamped)
+    if swapped:
+      target_pub.publish(pose)
+      pos_pub.publish(poseStamped)
+    else:
+      target_pub_too.publish(pose)
+      pos_pub_too.publish(poseStamped)
+    
     curQuat = (
                 pos_list[curRow,14],
                 pos_list[curRow,11],
@@ -91,8 +97,12 @@ def publish_poses(poseFile, pose_topic):
                 Quaternion(curQuat[1],curQuat[2],curQuat[3],curQuat[0]))
 
     poseStamped = PoseStamped(h,pose)
-    target_pub_too.publish(pose)
-    pos_pub_too.publish(poseStamped)
+    if not swapped:
+      target_pub.publish(pose)
+      pos_pub.publish(poseStamped)
+    else:
+      target_pub_too.publish(pose)
+      pos_pub_too.publish(poseStamped)
     r.sleep()
     curTime = rospy.Time.now().to_sec() - starttime
     curRow = curRow + 1
