@@ -6,6 +6,7 @@
   <!-- the "logic" node that says what thing the robot should do (eg: should do some cool moves) -->
   <node name="execute_trajectory_node" pkg="learn_trajectory" type="execute_both_trajectory_node.py" output="screen"> 
     <param name="link_prefix" value="$(arg link_prefix)"/>
+    <param name="recording_file_name" value="spoon_poses_both.txt"/>
   </node>
 
   <!-- set up a service that can read in text files and create goal poses -->
@@ -51,7 +52,7 @@
       <arg name="load_robot_description" value="true"/>
     </include>
 
-    <node pkg="tf2_ros" type="static_transform_publisher" name="bases_static_publisher" args="0.45 0.06 0.0 0.0 0.0 1.0 0.0 base_link $(arg link_prefix)base_link" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="bases_static_publisher" args="0.63 0.0 0.0 0.0 0.0 1.0 0.0 base_link $(arg link_prefix)base_link" />
 
     <!-- set up a service to forward goal locations to commands to the robot -->
     <node name="track_pose_service" pkg="feedbot_trajectory_logic" type="track_pose_service" respawn="false" output="screen">

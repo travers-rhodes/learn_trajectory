@@ -19,14 +19,15 @@ class SpoonFeeder:
     self.play_trajectory_topic = "trained_poses"
     self._play_trajectory = rospy.ServiceProxy("play_trajectory", PlayTrajectory)
 
-  def follow_trajectory(self):
+  def follow_trajectory(self, recording_file_name):
     self.tracker.start_updating_target_to_pose(self.play_trajectory_topic)
     rospy.logwarn("Playing trajectory at " + self.play_trajectory_topic)
-    self._play_trajectory(String(self.play_trajectory_topic))
+    self._play_trajectory(String(self.play_trajectory_topic), String(recording_file_name))
 
 if __name__=="__main__":
   rospy.init_node('spoon_feeder', anonymous=True)
+  recording_file_name = rospy.get_param("~recording_file_name")
   s = SpoonFeeder()
   while (True):
-    s.follow_trajectory()
+    s.follow_trajectory(recording_file_name)
     time.sleep(5)

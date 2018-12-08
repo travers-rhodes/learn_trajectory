@@ -28,6 +28,7 @@
     <!-- the "logic" node that says what thing the robot should do (eg: should do some cool moves) -->
     <node name="execute_trajectory_node" pkg="learn_trajectory" type="execute_trajectory_node.py" output="screen"> 
       <param name="link_prefix" value="$(arg link_prefix)"/>
+      <param name="recording_file_name" value="short_fork_careful_carry.txt"/>
     </node>
 
     <!-- set up a service that can read in text files and create goal poses -->
