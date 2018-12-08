@@ -1,9 +1,4 @@
 <launch>
-  <!-- this group lets you communicate with a certified original niryo robot -->
-  <group>
-    <!-- connect to or simulate a robot -->
-    <include file="$(find niryo_one_bringup)/launch/desktop_rviz_simulation.launch">
-      <arg name="hardware_version" value="1" /> 
-    </include>
-  </group>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find niryo_one_description)/urdf/v1/niryo_one.urdf.xacro" />
+  <node name="convert_trajectory" pkg="learn_trajectory" type="convert_joints_file_to_poses_node"/>
 </launch>
