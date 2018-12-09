@@ -43,7 +43,7 @@ def publish_poses(poseFile, pose_topic):
   pos_pub_too = rospy.Publisher("/domusromus/target_pose", PoseStamped, queue_size=10)
   r = rospy.Rate(10) # publish at max 10hz
   curRow = 0
-  while curRow < range(pos_list.shape[0]) and not rospy.is_shutdown():
+  while curRow < pos_list.shape[0] and not rospy.is_shutdown():
     #print(curTime, lasttime)
     #curRow = np.argmax((pos_list[:,0]  * slowdown_factor) > curTime) - 1
     #curRow = np.argmax((range(pos_list.shape[0])  * slowdown_factor) > curTime) - 1
