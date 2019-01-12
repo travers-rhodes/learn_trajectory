@@ -12,13 +12,13 @@
 #include <fstream>
 #include "feedbot_trajectory_logic/custom_domus_interface.h"
 
-void ExecutePose(std::vector<double> &joint_state, DomusInterface &di)
+void ExecutePose(std::vector<double> &joint_state, RobotInterface &di)
 {
   di.SendTargetAngles(joint_state,0.1);  
 }
 
 //read in the joints file and write the file
-void ExecuteAllPoses(DomusInterface &di)
+void ExecuteAllPoses(RobotInterface &di)
 {
   //https://stackoverflow.com/questions/14516915/read-numeric-data-from-a-text-file-in-c
   std::ifstream myfile;
@@ -52,7 +52,8 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "convert_joint_file_to_poses");
   ros::NodeHandle n;
-  CustomDomusInterface di(&n);
+  NiryoRobotParams robot_params;
+  CustomDomusInterface di(&n, robot_params);
   di.InitializeConnection();
   ExecuteAllPoses(di);
 }
