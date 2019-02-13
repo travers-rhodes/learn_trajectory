@@ -165,9 +165,8 @@ target_link_libraries(convert_both_joints_file_to_poses_node
 )
 
 target_link_libraries(run_poses_directly_node
-  feedbot_trajectory_logic
-  Eigen3::Eigen
   ${catkin_LIBRARIES}
+  Eigen3::Eigen
 )
 
 #############
