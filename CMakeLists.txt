@@ -156,17 +156,14 @@ add_executable(run_poses_directly_node src/run_poses_directly.cpp)
 ## Specify libraries to link a library or executable target against
 target_link_libraries(convert_joints_file_to_poses_node
   ${catkin_LIBRARIES}
-  Eigen3::Eigen
 )
 
 target_link_libraries(convert_both_joints_file_to_poses_node
   ${catkin_LIBRARIES}
-  Eigen3::Eigen
 )
 
 target_link_libraries(run_poses_directly_node
   ${catkin_LIBRARIES}
-  Eigen3::Eigen
 )
 
 #############
