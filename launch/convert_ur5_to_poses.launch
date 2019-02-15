@@ -6,6 +6,6 @@
 
   <node name="convert_trajectory" pkg="learn_trajectory" type="convert_joints_file_to_poses_node" output="screen">
     <param name="moveit_group" type="string" value="ur5e_arm"/>
-    <param name="end_effector_link" type="string" value="grasp_point_fixed"/>
+    <param name="end_effector_link" type="string" value="fork_point"/>
   </node>
 </launch>
