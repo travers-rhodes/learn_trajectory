@@ -39,7 +39,7 @@ def publish_poses(poseFile, pose_topic):
   target_pub = rospy.Publisher(pose_topic, Pose, queue_size=10)
   pos_pub = rospy.Publisher("target_pose", PoseStamped, queue_size=10)
   r = rospy.Rate(500) # publish at same speed as recording hz (10hz for niryo)
-  r = rospy.Rate(100) # publish at SLOWER speed than recording hz (10hz for niryo)
+  r = rospy.Rate(10) # publish at SLOWER speed than recording hz (10hz for niryo)
   curRow = 0
   while curRow < pos_list.shape[0] and not rospy.is_shutdown():
     #print(curTime, lasttime)
