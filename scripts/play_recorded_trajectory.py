@@ -22,7 +22,6 @@ def get_sampled_pos_data(rawData):
   datIndices = np.array([0,1,2,3,4,5,6,7])
   return(rawData[sampleIndices,:][:,datIndices])
 
-# in tapo's data, ox is row[10], oy is row[11], and oz is row[12]
 def get_quat(ox, oy, oz):
   quat = t3d.euler.euler2quat(oz, oy, ox, 'rzyx')
   return quat
