@@ -10,7 +10,7 @@
 #include <mutex>
 #include <iostream>
 #include <fstream>
-#include "feedbot_trajectory_logic/custom_domus_interface.h"
+#include "feedbot_trajectory_logic/ros_robot_interface.h"
 
 void ExecutePose(std::vector<double> &joint_state, RobotInterface &di)
 {
@@ -52,8 +52,8 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "convert_joint_file_to_poses");
   ros::NodeHandle n;
-  NiryoRobotParams robot_params;
-  CustomDomusInterface di(&n, robot_params);
+  CustomRobotParams robot_params;
+  RosRobotInterface di("dummy_follow_joint_trajectory_name", robot_params);
   di.InitializeConnection();
   ExecuteAllPoses(di);
 }
